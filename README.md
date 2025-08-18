@@ -1,8 +1,5 @@
-# 🚀 CraftFolio - A <img width="1720" height="891" alt="Screenshot 2025-08-18 194835" src="https://github.com/user-attachments/assets/efeb21fe-f794-43de-91de-6ce2b7fe76ac" />
-<img width="1883" height="1004" alt="Screenshot 2025-08-18 194617" src="https://github.com/user-attachments/assets/288bc77e-7b1f-478b-857b-1abae5113199" />
-<img width="1848" height="947" alt="Screenshot 2025-08-18 194648" src="https://github.com/user-attachments/assets/8b00b90b-7f89-468e-bca9-0a737e7c6400" />
-<img width="1861" height="981" alt="Screenshot 2025-08-18 194714" src="https://github.com/user-attachments/assets/9b1c215b-460b-4366-bd47-7e94803a6639" />
-Instant Portfolio Builder
+# 🚀 CraftFolio - A Instant Portfolio Builder
+
 
 An **Instant Portfolio Builder App** built with the **MERN stack (MongoDB, Express.js, React.js, Node.js)** that allows users to easily create and download their personalized portfolio.  
 
@@ -131,3 +128,8 @@ Contributions are welcome! Feel free to fork this repo and create a pull request
 
 ## 📜 License
 This project is licensed under the **MIT License**.  
+
+<img width="1720" height="891" alt="Screenshot 2025-08-18 194835" src="https://github.com/user-attachments/assets/efeb21fe-f794-43de-91de-6ce2b7fe76ac" />
+<img width="1883" height="1004" alt="Screenshot 2025-08-18 194617" src="https://github.com/user-attachments/assets/288bc77e-7b1f-478b-857b-1abae5113199" />
+<img width="1848" height="947" alt="Screenshot 2025-08-18 194648" src="https://github.com/user-attachments/assets/8b00b90b-7f89-468e-bca9-0a737e7c6400" />
+<img width="1861" height="981" alt="Screenshot 2025-08-18 194714" src="https://github.com/user-attachments/assets/9b1c215b-460b-4366-bd47-7e94803a6639" />

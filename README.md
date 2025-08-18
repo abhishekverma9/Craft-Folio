@@ -30,7 +30,7 @@ Users can:
 - **Backend:** Node.js, Express.js  
 - **Database:** MongoDB (Mongoose)  
 - **File Uploads:** Multer + Cloudinary  
-- **Authentication:** JWT / bcrypt (if used)  
+- **Authentication:** JWT / bcrypt  
 - **Other:** QR code generation, Responsive design  
 
 ---
@@ -39,8 +39,8 @@ Users can:
 
 ```
 instant-portfolio-builder/
-│── client/           # React frontend
-│── server/           # Express + Node.js backend
+│── frontend/           # React frontend
+│── backend/           # Express + Node.js backend
 │── .env              # Environment variables
 │── package.json
 │── README.md
@@ -55,18 +55,18 @@ Follow these steps to run the project locally:
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/abhishekverma9/Craft-Folio.git
-cd instant-portfolio-builder
+cd Craft-Folio
 ```
 
 ### 2️⃣ Install Dependencies
 #### Backend
 ```bash
-cd server
+cd backend
 npm install
 ```
 #### Frontend
 ```bash
-cd ../client
+cd frontend
 npm install
 ```
 
@@ -83,12 +83,12 @@ CLOUDINARY_API_SECRET=your_api_secret
 ### 4️⃣ Run the Application
 #### Backend
 ```bash
-cd server
-npm start
+cd backend
+npm run server
 ```
 #### Frontend
 ```bash
-cd client
+cd frontend
 npm run dev
 ```
 
@@ -106,12 +106,6 @@ npm run dev
 5. Start development servers  
 6. Visit `http://localhost:5173/` (or the port shown in terminal)  
 
----
-
-## 📸 Screenshots (Optional)
-(Add some screenshots of your app UI here for better presentation)
-
----
 
 ## 📌 Future Enhancements
 - Add **custom themes & templates** for portfolio  
@@ -129,6 +123,11 @@ Contributions are welcome! Feel free to fork this repo and create a pull request
 ## 📜 License
 This project is licensed under the **MIT License**.  
 
+---
+
+## 📸 Screenshots 
+
+---
 <img width="1883" height="1004" alt="Screenshot 2025-08-18 194617" src="https://github.com/user-attachments/assets/288bc77e-7b1f-478b-857b-1abae5113199" />
 <img width="1848" height="947" alt="Screenshot 2025-08-18 194648" src="https://github.com/user-attachments/assets/8b00b90b-7f89-468e-bca9-0a737e7c6400" />
 <img width="1861" height="981" alt="Screenshot 2025-08-18 194714" src="https://github.com/user-attachments/assets/9b1c215b-460b-4366-bd47-7e94803a6639" />

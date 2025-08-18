@@ -199,7 +199,7 @@ const InfoForm = () => {
             </div>
           ))}
         </div>
-        <button disabled={!isFormValid || isBuilding} onClick={() => openInNewTab('http://localhost:5173/portfolio')} type='submit' className={`${isFormValid ? "bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white" : "bg-gray-400 cursor-not-allowed text-black"}  w-1/3 my-4 py-2 rounded-md `}>{isBuilding ? "Building...":"Build"}</button>
+        <button disabled={!isFormValid || isBuilding} onClick={() => openInNewTab(`${import.meta.env.VITE_BACKEND_URL}/portfolio`)} type='submit' className={`${isFormValid ? "bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white" : "bg-gray-400 cursor-not-allowed text-black"}  w-1/3 my-4 py-2 rounded-md `}>{isBuilding ? "Building...":"Build"}</button>
       </form>
     </>
   )

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { FaHome, FaUser, FaPhone } from "react-icons/fa";
 import ProjCard from '../components/ProjCard';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaDownload } from "react-icons/fa";
+import { FaGithub,FaRocket, FaLinkedin, FaTwitter, FaEnvelope, FaDownload } from "react-icons/fa";
 import { BsQrCode } from "react-icons/bs";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
@@ -26,63 +26,63 @@ const Portfolio = () => {
         }
     };
     // Function to create the HTML string with inline CSS and download it.
-    const handleDownload = () => {
-        // Get the full HTML content of the current page.
+    const handleDownload = async () => {
+        // Get full HTML content of the current page
         const pageHTML = document.documentElement.outerHTML;
 
-        // Create a new HTML string with the desired DOCTYPE and content.
-        // We add some basic styling to ensure the page looks good when downloaded.
-        const fullHTML = `<!DOCTYPE html>
-            <html lang="en">
-            <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Downloaded Page</title>
-            <style>
-                body {
-                font-family: 'Inter', sans-serif;
-                margin: 20px;
-                line-height: 1.6;
+        // Fetch the Tailwind-generated CSS from your app
+        const cssLinks = Array.from(document.querySelectorAll("link[rel='stylesheet']"));
+        const cssContent = await Promise.all(
+            cssLinks.map(async (link) => {
+                try {
+                    const res = await fetch(link.href);
+                    return await res.text();
+                } catch (e) {
+                    return "";
                 }
-            </style>
-            </head>
-            <body>
-            ${pageHTML}
-            </body>
-            </html>`;
+            })
+        );
 
-        // Create a Blob from the HTML string with 'text/html' MIME type.
-        const blob = new Blob([fullHTML], { type: 'text/html' });
+        const fullHTML = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>${personalData?.name || "Portfolio"}</title>
+        <style>
+          ${cssContent.join("\n")}
+        </style>
+      </head>
+      <body>
+        ${pageHTML}
+      </body>
+      </html>`;
 
-        // Create a temporary URL for the Blob.
+        const blob = new Blob([fullHTML], { type: "text/html" });
         const url = URL.createObjectURL(blob);
 
-        // Create a temporary anchor element to trigger the download.
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
-        link.download = `${personalData.name}-portfolio.html`; // Use user's filename or default.
-
-        // Append the link to the body, click it, and then remove it.
+        link.download = `${personalData?.name || "portfolio"}-portfolio.html`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
 
-        // Revoke the temporary URL to free up memory.
         URL.revokeObjectURL(url);
 
-        // Set a message to inform the user the download has started.
-        setDownloadMessage('Download started!');
-        useEffect(() => {
-            if (downloadMessage.includes("Download started!")) {
-                toast.success("File Downloaded ✅");
-            }
-        }, [downloadMessage]);
-        setTimeout(() => setDownloadMessage(''), 3000);
+        setDownloadMessage("Download started!");
+        setTimeout(() => setDownloadMessage(""), 3000);
     };
+
     useEffect(() => {
-        document.title = "My Portfolio - Created by CraftFolio"; 
+        if (downloadMessage.includes("Download started!")) {
+            toast.success("File Downloaded ✅");
+        }
+    }, [downloadMessage]);
+    useEffect(() => {
+        document.title = "My Portfolio - Created by CraftFolio";
     }, []);
-    return dynamicData && personalData && (
+    return dynamicData && personalData ? (
         <>
             <div className="min-h-[80%] font-sans text-white">
                 {/* Navbar */}
@@ -259,7 +259,14 @@ const Portfolio = () => {
                 </div>
             </footer>
         </>
-    );
+    ) : (
+        <div className="flex flex-col items-center justify-center min-h-screen text-center">
+            <h1 className="text-4xl font-bold text-sky-400">No Projects Found</h1>
+            <p className="text-lg text-sky-400 mt-2 flex items-center gap-2">
+                Start adding your awesome projects <br />For your Portfolio <FaRocket />
+            </p>
+        </div>
+    )
 };
 
 export default Portfolio;

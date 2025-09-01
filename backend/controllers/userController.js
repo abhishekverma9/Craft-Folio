@@ -14,7 +14,7 @@ const register = async (req, res) => {
     const { name, password, email } = req.body
     try {
         //Checking  if user already exists
-        const exists = await userModel.findOne({ email })
+        const exists = await userModel.findOne({ email, provider: "email" })
         if (exists) {
             return res.json({ success: false, message: "User Already Exists" })
         }
@@ -28,7 +28,8 @@ const register = async (req, res) => {
         const newUser = new userModel({
             name: name,
             email: email,
-            password: hashedPassword
+            password: hashedPassword,
+            provider: "email"
         })
         const user = await newUser.save()
         const token = createToken(user._id)
@@ -42,7 +43,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { password, email } = req.body
     try {
-        const user = await userModel.findOne({ email })
+        const user = await userModel.findOne({ email, provider: "email" })
         if (!user) {
             return res.json({ success: false, message: "User doesn't exist" })
         }
@@ -57,6 +58,25 @@ const login = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.json({ success: false, message: error.message })
+    }
+}
+// Google Login Authentication
+const googleLogin = async (req, res) => {
+    try {
+        const { email, name, gtoken } = req.body;
+        let user = await userModel.findOne({ email,provider:"google" });
+        if (!user) {
+            user = await userModel.create({
+                email,
+                name,
+                provider: "google",
+            });
+        }
+        const token = createToken(user._id);
+        res.json({success: true,token,user,gtoken});
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
 }
 const userPersonalDetails = async (req, res) => {
@@ -192,4 +212,4 @@ const userResponse = async (req, res) => {
     }
 }
 
-export { register, login, userPersonalDetails, userDynamicDetails, getPersonalDetails, getDynamicDetails, deleteDynamicDetails, userResponse }
+export { register, login, googleLogin, userPersonalDetails, userDynamicDetails, getPersonalDetails, getDynamicDetails, deleteDynamicDetails, userResponse }
